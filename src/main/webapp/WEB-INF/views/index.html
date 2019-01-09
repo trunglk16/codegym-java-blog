@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1 style="position: relative;left: 40%">Trung's blog</h1>
+<main class="page-content" aria-label="Content" style="left: 30%; position: relative">
+
+    <div style="margin-top: 10px;margin-bottom: 20px">
+
+        <a href="/create-news"><h3>Create news</h3></a>
+        <b>Title</b>
+        <th:block th:each="blog : ${blogs}">
+            <div style="width: 100%;margin-top: 5px;border-bottom: 1px solid whitesmoke;padding-bottom: 6px">
+                <a th:href="@{/view-blog/__${blog.id}__ }" th:text="${blog.tittle}"></a>
+            </div>
+        </th:block>
+
+    </div>
+</main>
+</body>
+</html>
