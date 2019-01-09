@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2 style="position: relative;left: 40%" th:text="${blog.tittle}"></h2>
+
+
+<main class="page-content" aria-label="Content" style="left: 10%; position: relative">
+    <a th:href="@{/view-blog/__${blog.id}__ }"><h3>Back to news</h3></a>
+
+    <div style="margin-top: 10px;margin-bottom: 20px">
+        <form th:action="@{/edit-blog}" th:object="${blog}" method="post">
+            <input type="text" th:field="*{tittle}">
+            <br>
+            <textarea th:field="*{content}"></textarea>
+            <br>
+            <input type="submit" value="Update">
+        </form>
+
+    </div>
+</main>
+
+</body>
+</html>

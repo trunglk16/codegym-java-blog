@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2 style="position: relative;left: 40%">Create a news</h2>
+<a href="/"><h3>Back to index</h3></a>
+<main class="page-content" aria-label="Content" style="left: 30%; position: relative">
+
+    <div style="margin-top: 10px;margin-bottom: 20px">
+        <th:block th:if="${message}">
+            <p th:text="${message}"></p>
+        </th:block>
+        <form th:action="@{/create-news}" th:object="${blog}" method="post">
+            <table>
+                <tr>
+                    <td>Title:</td>
+                    <td><input type="text" th:field="*{tittle}"/></td>
+                </tr>
+                <tr>
+                    <td>Content:</td>
+                    <td><textarea type="text" th:field="*{content}"/></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Create customer"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</main>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2 style="position: relative;left: 40%" th:text="${blog.tittle}"></h2>
+
+
+<main class="page-content" aria-label="Content" style="left: 10%; position: relative">
+    <a href="/"><h3>Back to index</h3></a>
+    <th:block th:if="${message}">
+        <p th:text="${message}"></p>
+    </th:block>
+
+    <div style="margin-top: 10px;margin-bottom: 20px">
+
+        <form th:object="${blog}">
+            <input type="hidden" name="id" th:field="*{id}">
+            <p th:text="${blog.content}"></p>
+        </form>
+
+        <a th:href="@{/edit-blog/__${blog.id}__ }">Edit</a>
+        <a th:href="@{/delete-blog/__${blog.id}__ }">Delete</a>
+
+    </div>
+</main>
+</body>
+</html>
