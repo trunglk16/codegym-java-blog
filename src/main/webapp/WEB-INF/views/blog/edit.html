@@ -13,6 +13,7 @@
 
     <div style="margin-top: 10px;margin-bottom: 20px">
         <form th:action="@{/edit-blog}" th:object="${blog}" method="post">
+            <input th:type="hidden" name="id" th:field="*{id}">
             <input type="text" th:field="*{tittle}">
             <br>
             <textarea th:field="*{content}"></textarea>

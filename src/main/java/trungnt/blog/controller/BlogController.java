@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
-import trungnt.blog.service.BlogService;
 import trungnt.blog.model.Blog;
+import trungnt.blog.service.BlogService;
 
 @Controller
 public class BlogController {
@@ -25,9 +25,9 @@ public class BlogController {
 
     @GetMapping("/")
     public ModelAndView listCustomers(Pageable pageable) {
-        Page<Blog> blogs = blogService.findAll(pageable);
+        Page<Blog> blog = blogService.findAll(pageable);
         ModelAndView modelAndView = new ModelAndView("/index");
-        modelAndView.addObject("blogs", blogs);
+        modelAndView.addObject("blog", blog);
         return modelAndView;
     }
 
@@ -35,17 +35,24 @@ public class BlogController {
     public ModelAndView showCreatePage(){
         ModelAndView modelAndView = new ModelAndView("/blog/create");
         modelAndView.addObject("blog", new Blog());
+
         return modelAndView;
     }
 
     @PostMapping("/create-news")
-    public ModelAndView saveNews(@ModelAttribute("blog") Blog blog){
+    public ModelAndView saveNews(@ModelAttribute("blog") Blog blog) {
         blogService.save(blog);
+        if (blog != null) {
 
-        ModelAndView modelAndView = new ModelAndView("/blog/create");
-        modelAndView.addObject("blog", new Blog());
-        modelAndView.addObject("message", "News created successfully");
-        return modelAndView;
+
+            ModelAndView modelAndView = new ModelAndView("/blog/create");
+            modelAndView.addObject("blog", new Blog());
+            modelAndView.addObject("message", "News created successfully");
+            return modelAndView;
+        } else {
+            ModelAndView modelAndView = new ModelAndView("error.404");
+            return modelAndView;
+        }
     }
 
     @GetMapping("/view-blog/{id}")
@@ -79,26 +86,29 @@ public class BlogController {
     @PostMapping("/edit-blog")
     public ModelAndView updateBlog(@ModelAttribute("blog") Blog blog) {
         blogService.save(blog);
-        ModelAndView modelAndView = new ModelAndView("/blog/edit");
+        ModelAndView modelAndView = new ModelAndView("/blog/view");
         modelAndView.addObject("blog", blog);
         modelAndView.addObject("message", "Blog edited");
         return modelAndView;
     }
 
+
     @GetMapping("/delete-blog/{id}")
-    public ModelAndView showDeleteForm(@PathVariable Long id){
+    public String showDeleteForm(@PathVariable Long id){
         Blog blog= blogService.findById(id);
         if(blog != null) {
             blogService.remove(blog.getId());
-            ModelAndView modelAndView = new ModelAndView("/blog/view");
-            modelAndView.addObject("blog", blog);
-            return modelAndView;
+
+            return "redirect:/";
 
         }else {
-            ModelAndView modelAndView = new ModelAndView("/error.404");
-            return modelAndView;
+            return "redirect:/error404";
         }
     }
 
+    @GetMapping("/error404")
+    public String error404() {
+        return "error.404";
+    }
 
 }

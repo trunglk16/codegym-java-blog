@@ -12,9 +12,9 @@
 
         <a href="/create-news"><h3>Create news</h3></a>
         <b>Title</b>
-        <th:block th:each="blog : ${blogs}">
+        <th:block th:each="b : ${blog}">
             <div style="width: 100%;margin-top: 5px;border-bottom: 1px solid whitesmoke;padding-bottom: 6px">
-                <a th:href="@{/view-blog/__${blog.id}__ }" th:text="${blog.tittle}"></a>
+                <a th:href="@{/view-blog/__${b.id}__ }" th:text="${b.tittle}"></a>
             </div>
         </th:block>
 

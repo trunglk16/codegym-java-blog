@@ -8,7 +8,6 @@ public interface BlogService {
     Iterable<Blog> findAll();
 
     Page<Blog> findAll(Pageable pageable);
-
     void save(Blog blog);
 
     void remove(Long id);
