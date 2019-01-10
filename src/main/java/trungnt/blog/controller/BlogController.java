@@ -92,7 +92,6 @@ public class BlogController {
         return modelAndView;
     }
 
-
     @GetMapping("/delete-blog/{id}")
     public String showDeleteForm(@PathVariable Long id){
         Blog blog= blogService.findById(id);
