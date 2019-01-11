@@ -19,6 +19,7 @@
 
         <form th:object="${blog}">
             <input type="hidden" name="id" th:field="*{id}">
+            <p th:text="${blog.date}"></p>
             <p th:text="${blog.content}"></p>
         </form>
 

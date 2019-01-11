@@ -19,7 +19,6 @@ public class BlogController {
     @Autowired
     private BlogService blogService;
 
-
 //    @GetMapping("/")
 //    public String index() {
 //        return "/index";
@@ -27,7 +26,14 @@ public class BlogController {
 
     @GetMapping("/")
     public ModelAndView listCustomers(Pageable pageable) {
+
         Page<Blog> blog = blogService.findAll(pageable);
+        for (Blog b:blog ) {
+            if (b.getDate() == null) {
+                b.setDate("Empty");
+            }
+
+        }
         ModelAndView modelAndView = new ModelAndView("/index");
         modelAndView.addObject("blog", blog);
         return modelAndView;

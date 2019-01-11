@@ -27,6 +27,11 @@
                     <td th:if="${#fields.hasErrors('content')}" th:errors="*{content}"></td>
                 </tr>
                 <tr>
+                    <td>Date:</td>
+                    <td><input type="date" th:field="*{date}"/></td>
+                    <td th:if="${#fields.hasErrors('date')}" th:errors="*{date}"></td>
+                </tr>
+                <tr>
                     <td></td>
                     <td><input type="submit" value="Create customer"></td>
                 </tr>

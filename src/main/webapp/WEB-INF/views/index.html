@@ -12,11 +12,20 @@
 
         <a href="/create-news"><h3>Create news</h3></a>
         <b>Title</b>
+
         <th:block th:each="b : ${blog}">
             <div style="width: 100%;margin-top: 5px;border-bottom: 1px solid whitesmoke;padding-bottom: 6px">
-                <a th:href="@{/view-blog/__${b.id}__ }" th:text="${b.tittle}"></a>
+                <table>
+                    <td><a th:href="@{/view-blog/__${b.id}__ }" th:text="${b.tittle}"></a></td>
+                    <td  th:text="${b.date}"></td>
+                </table>
             </div>
         </th:block>
+        <div>
+            <a th:href="@{'/blog'(page=${blog.number - 1})}" th:if="${blog.hasPrevious()}">Previous</a>
+            <span th:text="${blog.number + 1}"></span>/<span th:text="${blog.totalPages}"></span>
+            <a th:href="@{'/blog'(page=${blog.number + 1})}" th:if="${blog.hasNext()}">Next</a>
+        </div>
 
     </div>
 </main>

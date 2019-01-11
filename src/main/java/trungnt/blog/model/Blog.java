@@ -17,19 +17,30 @@ public class Blog {
     private Long id;
 
     @NotEmpty(message = "You must insert title")
-    @Size(max = 250,message = "Title uoc qua 250 ky tu")
+    @Size(max = 250, message = "Title uoc qua 250 ky tu")
     private String tittle;
 
     @NotEmpty(message = "You must insert content")
     private String content;
 
+    @Size(min = 8, max = 8, message = "yyyy/mm/dd")
+    private String date;
 
     public Blog() {
     }
 
-    public Blog(String tittle, String content) {
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public Blog(@NotEmpty(message = "You must insert title") @Size(max = 250, message = "Title uoc qua 250 ky tu") String tittle, @NotEmpty(message = "You must insert content") String content, @Size(min = 8, max = 8, message = "yyyy/mm/dd") String date) {
         this.tittle = tittle;
         this.content = content;
+        this.date = date;
     }
 
     public Long getId() {

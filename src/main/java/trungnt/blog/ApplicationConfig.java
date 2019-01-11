@@ -48,9 +48,9 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter implements Applic
     }
 
     @Bean
-    public BlogService blogService(){
-        return new BlogServiceImpl();
-    }
+        public BlogService blogService(){
+            return new BlogServiceImpl();
+        }
 
 
 
