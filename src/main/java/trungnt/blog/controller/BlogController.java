@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,19 +41,17 @@ public class BlogController {
     }
 
     @PostMapping("/create-news")
-    public ModelAndView saveNews(@ModelAttribute("blog") Blog blog) {
-        blogService.save(blog);
-        if (blog != null) {
-
-
+    public ModelAndView saveNews(@Validated @ModelAttribute("blog") Blog blog, BindingResult bindingResult) {
+       if (!bindingResult.hasFieldErrors()){
+         blogService.save(blog);
             ModelAndView modelAndView = new ModelAndView("/blog/create");
             modelAndView.addObject("blog", new Blog());
             modelAndView.addObject("message", "News created successfully");
             return modelAndView;
         } else {
-            ModelAndView modelAndView = new ModelAndView("error.404");
-            return modelAndView;
-        }
+            ModelAndView modelAndView = new ModelAndView("/blog/create");
+           return modelAndView;
+       }
     }
 
     @GetMapping("/view-blog/{id}")

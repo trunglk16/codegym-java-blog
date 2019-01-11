@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link rel="stylesheet" href="/Resource/style.css">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
@@ -18,10 +19,12 @@
                 <tr>
                     <td>Title:</td>
                     <td><input type="text" th:field="*{tittle}"/></td>
+                    <td th:if="${#fields.hasErrors('tittle')}" th:errors="*{tittle}"></td>
                 </tr>
                 <tr>
                     <td>Content:</td>
                     <td><textarea type="text" th:field="*{content}"/></td>
+                    <td th:if="${#fields.hasErrors('content')}" th:errors="*{content}"></td>
                 </tr>
                 <tr>
                     <td></td>
