@@ -1,11 +1,14 @@
 package trungnt.blog.model;
 
+import com.sun.istack.internal.NotNull;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "blog")
 public class Blog {
 
+    @NotNull
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
