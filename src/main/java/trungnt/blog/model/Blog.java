@@ -1,9 +1,7 @@
 package trungnt.blog.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -13,7 +11,6 @@ public class Blog {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @NotNull
     private Long id;
 
     @NotEmpty(message = "You must insert title")
@@ -23,7 +20,7 @@ public class Blog {
     @NotEmpty(message = "You must insert content")
     private String content;
 
-    @NotEmpty(message = "dd/mm/yyyy")
+    @NotEmpty(message = "You must insert: dd/mm/yyyy")
     private String date;
 
     public Blog() {

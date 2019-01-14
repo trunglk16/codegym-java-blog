@@ -1,5 +1,6 @@
 package trungnt.blog;
 
+
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
@@ -47,7 +48,6 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter implements Applic
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.applicationContext = applicationContext;
     }
-
     @Bean
         public BlogService blogService(){
             return new BlogServiceImpl();

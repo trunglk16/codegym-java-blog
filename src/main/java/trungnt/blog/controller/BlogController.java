@@ -28,14 +28,13 @@ public class BlogController {
 
     @PostMapping("/create-news")
     public ModelAndView saveNews(@Validated @ModelAttribute("blog") Blog blog, BindingResult bindingResult) {
+        ModelAndView modelAndView = new ModelAndView("/blog/create");
         if (!bindingResult.hasFieldErrors()) {
             blogService.save(blog);
-            ModelAndView modelAndView = new ModelAndView("/blog/create");
             modelAndView.addObject("blog", new Blog());
             modelAndView.addObject("message", "News created successfully");
             return modelAndView;
         } else {
-            ModelAndView modelAndView = new ModelAndView("/blog/create");
             return modelAndView;
         }
     }
