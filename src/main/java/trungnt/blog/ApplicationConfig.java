@@ -55,9 +55,6 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter implements Applic
 
 
 
-
-
-
     ///Thymeleaf
     @Bean
     public SpringResourceTemplateResolver templateResolver() {

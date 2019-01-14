@@ -19,28 +19,8 @@ public class BlogController {
     @Autowired
     private BlogService blogService;
 
-//    @GetMapping("/")
-//    public String index() {
-//        return "/index";
-//    }
-
-    @GetMapping("/")
-    public ModelAndView listCustomers(Pageable pageable) {
-
-        Page<Blog> blog = blogService.findAll(pageable);
-        for (Blog b:blog ) {
-            if (b.getDate() == null) {
-                b.setDate("Empty");
-            }
-
-        }
-        ModelAndView modelAndView = new ModelAndView("/index");
-        modelAndView.addObject("blog", blog);
-        return modelAndView;
-    }
-
     @GetMapping("/create-news")
-    public ModelAndView showCreatePage(){
+    public ModelAndView showCreatePage() {
         ModelAndView modelAndView = new ModelAndView("/blog/create");
         modelAndView.addObject("blog", new Blog());
         return modelAndView;
@@ -48,16 +28,16 @@ public class BlogController {
 
     @PostMapping("/create-news")
     public ModelAndView saveNews(@Validated @ModelAttribute("blog") Blog blog, BindingResult bindingResult) {
-       if (!bindingResult.hasFieldErrors()){
-         blogService.save(blog);
+        if (!bindingResult.hasFieldErrors()) {
+            blogService.save(blog);
             ModelAndView modelAndView = new ModelAndView("/blog/create");
             modelAndView.addObject("blog", new Blog());
             modelAndView.addObject("message", "News created successfully");
             return modelAndView;
         } else {
             ModelAndView modelAndView = new ModelAndView("/blog/create");
-           return modelAndView;
-       }
+            return modelAndView;
+        }
     }
 
     @GetMapping("/view-blog/{id}")
@@ -67,21 +47,21 @@ public class BlogController {
             ModelAndView modelAndView = new ModelAndView("/blog/view");
             modelAndView.addObject("blog", blog);
             return modelAndView;
-        }else {
+        } else {
             ModelAndView modelAndView = new ModelAndView("/error.404");
             return modelAndView;
         }
     }
 
     @GetMapping("/edit-blog/{id}")
-    public ModelAndView showEditForm(@PathVariable Long id){
+    public ModelAndView showEditForm(@PathVariable Long id) {
         Blog blog = blogService.findById(id);
-        if(blog != null) {
+        if (blog != null) {
             ModelAndView modelAndView = new ModelAndView("/blog/edit");
             modelAndView.addObject("blog", blog);
             return modelAndView;
 
-        }else {
+        } else {
             ModelAndView modelAndView = new ModelAndView("/error.404");
             return modelAndView;
         }
@@ -98,13 +78,13 @@ public class BlogController {
     }
 
     @GetMapping("/delete-blog/{id}")
-    public String showDeleteForm(@PathVariable Long id){
-        Blog blog= blogService.findById(id);
-        if(blog != null) {
+    public String showDeleteForm(@PathVariable Long id) {
+        Blog blog = blogService.findById(id);
+        if (blog != null) {
             blogService.remove(blog.getId());
             return "redirect:/";
 
-        }else {
+        } else {
             return "redirect:/error404";
         }
     }

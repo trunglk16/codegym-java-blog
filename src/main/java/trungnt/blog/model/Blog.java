@@ -23,7 +23,7 @@ public class Blog {
     @NotEmpty(message = "You must insert content")
     private String content;
 
-    @Size(min = 8, max = 8, message = "yyyy/mm/dd")
+    @NotEmpty(message = "dd/mm/yyyy")
     private String date;
 
     public Blog() {
@@ -37,7 +37,7 @@ public class Blog {
         this.date = date;
     }
 
-    public Blog(@NotEmpty(message = "You must insert title") @Size(max = 250, message = "Title uoc qua 250 ky tu") String tittle, @NotEmpty(message = "You must insert content") String content, @Size(min = 8, max = 8, message = "yyyy/mm/dd") String date) {
+    public Blog(@NotEmpty(message = "You must insert title") @Size(max = 250, message = "Title uoc qua 250 ky tu") String tittle, @NotEmpty(message = "You must insert content") String content, @NotEmpty(message = "dd/mm/yyyy") String date) {
         this.tittle = tittle;
         this.content = content;
         this.date = date;
