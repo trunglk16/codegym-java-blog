@@ -22,9 +22,9 @@
             </div>
         </th:block>
         <div>
-            <a th:href="@{'/blog'(page=${blog.number - 1})}" th:if="${blog.hasPrevious()}">Previous</a>
+            <a th:href="@{'/'(page=${blog.number - 1})}" th:if="${blog.hasPrevious()}">Previous</a>
             <span th:text="${blog.number + 1}"></span>/<span th:text="${blog.totalPages}"></span>
-            <a th:href="@{'/blog'(page=${blog.number + 1})}" th:if="${blog.hasNext()}">Next</a>
+            <a th:href="@{'/'(page=${blog.number + 1})}" th:if="${blog.hasNext()}">Next</a>
         </div>
 
     </div>
